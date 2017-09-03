@@ -31,6 +31,8 @@ func main() {
 	mainloop(ticker)
 }
 
+// Function mainloop is used to block the program execution
+// and provide a pretty way of program to quit
 func mainloop(ticker time.Ticker) {
 	exitSignal := make(chan os.Signal)
 	signal.Notify(exitSignal, syscall.SIGINT, syscall.SIGTERM)
@@ -41,6 +43,9 @@ func mainloop(ticker time.Ticker) {
 	os.Exit(0)
 }
 
+// Function loadConfig is used to load program configuration
+// in .env file
+// NOTE : You must always put your .env file in the same directory as the program
 func loadConfig() {
 	err := godotenv.Load()
 	if err != nil {
@@ -64,13 +69,20 @@ func loadConfig() {
 	}
 
 	azanFile = os.Getenv("AZAN_FILENAME")
+	if azanFile == "" {
+		log.Fatal("AZAN_FILENAME configuration is missing")
+	}
 }
 
+// This is used to get the current date as string
 func getCurrentDateAsString() string {
 	objNow := time.Now()
 	return fmt.Sprintf("%d %s %d", objNow.Day(), objNow.Month().String(), objNow.Year())
 }
 
+// Function timeTicker always check the time every minute and
+// compares it with prayer time schedule. When the time is match
+// with one of the prayer time, it calls playAzan function
 func timeTicker(ptMap map[string]string, azanFile string) time.Ticker {
 	ticker := time.NewTicker(time.Minute)
 
@@ -93,6 +105,8 @@ func timeTicker(ptMap map[string]string, azanFile string) time.Ticker {
 	return *ticker
 }
 
+// Function playAzan will plays the Azan MP3 file
+// It needs `mp123` library to plays MP3 file
 func playAzan(azanFile string) {
 	cmd := exec.Command("mpg123", azanFile)
 	err := cmd.Run()
@@ -101,12 +115,15 @@ func playAzan(azanFile string) {
 	}
 }
 
+// Function prayTime retrieves prayer time schedule from
+// PrayTimes(https://github.com/3ace/PrayTimes-Golang) library
 func prayTime(latitude float64, longitude float64, timezone int) map[string]string {
 	pt := praytimes.GetTimes(time.Now(), []float64{latitude, longitude}, timezone)
 
 	return pt
 }
 
+// This function prints out prayer time schedule
 func printPrayTime(ptMap map[string]string) {
 	fmt.Println("midnight =", ptMap["midnight"])
 	fmt.Println("imsak =", ptMap["imsak"])
