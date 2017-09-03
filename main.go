@@ -5,7 +5,9 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"os/signal"
 	"strconv"
+	"syscall"
 	"time"
 
 	praytimes "github.com/3ace/PrayTimes-Golang"
@@ -21,10 +23,22 @@ var azanFile string
 func main() {
 	loadConfig()
 	currentDate := getCurrentDateAsString()
-	fmt.Println("Prayer time schedule for", cityName, "on", currentDate)
 	ptMap := prayTime(cityLat, cityLong, cityTimezone)
+
+	fmt.Println("Prayer time schedule for", cityName, "on", currentDate)
 	printPrayTime(ptMap)
-	timeTicker(ptMap, azanFile)
+	ticker := timeTicker(ptMap, azanFile)
+	mainloop(ticker)
+}
+
+func mainloop(ticker time.Ticker) {
+	exitSignal := make(chan os.Signal)
+	signal.Notify(exitSignal, syscall.SIGINT, syscall.SIGTERM)
+	<-exitSignal
+
+	ticker.Stop()
+	fmt.Println("Program Exit")
+	os.Exit(0)
 }
 
 func loadConfig() {
@@ -57,7 +71,7 @@ func getCurrentDateAsString() string {
 	return fmt.Sprintf("%d %s %d", objNow.Day(), objNow.Month().String(), objNow.Year())
 }
 
-func timeTicker(ptMap map[string]string, azanFile string) {
+func timeTicker(ptMap map[string]string, azanFile string) time.Ticker {
 	ticker := time.NewTicker(time.Minute)
 
 	go func() {
@@ -76,9 +90,7 @@ func timeTicker(ptMap map[string]string, azanFile string) {
 		}
 	}()
 
-	time.Sleep(time.Minute * 60)
-	ticker.Stop()
-
+	return *ticker
 }
 
 func playAzan(azanFile string) {
@@ -96,13 +108,12 @@ func prayTime(latitude float64, longitude float64, timezone int) map[string]stri
 }
 
 func printPrayTime(ptMap map[string]string) {
-	fmt.Print("midnight=", ptMap["midnight"], " | ")
-	fmt.Print("imsak=", ptMap["imsak"], " | ")
-	fmt.Print("fajr=", ptMap["fajr"], " | ")
-	fmt.Print("sunrise=", ptMap["sunrise"], " | ")
-	fmt.Print("dhuhr=", ptMap["dhuhr"], " | ")
-	fmt.Print("asr=", ptMap["asr"], " | ")
-	fmt.Print("maghrib=", ptMap["maghrib"], " | ")
-	fmt.Print("isha=", ptMap["isha"])
-	fmt.Print("\n")
+	fmt.Println("midnight =", ptMap["midnight"])
+	fmt.Println("imsak =", ptMap["imsak"])
+	fmt.Println("fajr =", ptMap["fajr"])
+	fmt.Println("sunrise =", ptMap["sunrise"])
+	fmt.Println("dhuhr =", ptMap["dhuhr"])
+	fmt.Println("asr =", ptMap["asr"])
+	fmt.Println("maghrib =", ptMap["maghrib"])
+	fmt.Println("isha =", ptMap["isha"])
 }
