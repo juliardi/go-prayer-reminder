@@ -10,8 +10,8 @@ import (
 	"syscall"
 	"time"
 
-	praytimes "github.com/3ace/PrayTimes-Golang"
 	godotenv "github.com/joho/godotenv"
+	praytimes "github.com/juliardi/PrayTimes-Golang"
 )
 
 var cityName string

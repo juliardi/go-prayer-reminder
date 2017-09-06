@@ -2,20 +2,20 @@
 
 
 [[projects]]
-  branch = "master"
-  name = "github.com/3ace/PrayTimes-Golang"
-  packages = ["."]
-  revision = "6c27cf2aadaf6f17db7f2ca17ec255b66767df5c"
-
-[[projects]]
   name = "github.com/joho/godotenv"
   packages = ["."]
   revision = "726cc8b906e3d31c70a9671c90a13716a8d3f50d"
   version = "v1.1"
 
+[[projects]]
+  branch = "master"
+  name = "github.com/juliardi/PrayTimes-Golang"
+  packages = ["."]
+  revision = "99cd9becafc32aed615264f06a501308a7be4b34"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "21ba60c9bb1c74c721985ab41459f9e8dbab9d37796234b1d8a9cbcada019028"
+  inputs-digest = "d7852a1d342cac053e5961823ee2b2647b0950182bf60b7cfd3764f45a728505"
   solver-name = "gps-cdcl"
   solver-version = 1
