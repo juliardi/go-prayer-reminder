@@ -23,7 +23,7 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/3ace/PrayTimes-Golang"
+  name = "github.com/juliardi/PrayTimes-Golang"
 
 [[constraint]]
   name = "github.com/joho/godotenv"
