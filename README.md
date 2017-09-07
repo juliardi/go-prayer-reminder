@@ -28,7 +28,7 @@ CITY_TIMEZONE="7"
 AZAN_FILENAME="path-to-mp3-file"
 METHOD="MWL"
 ````
-The METHOD setting, can be filled with one of this value :
+The METHOD setting, can be filled with one of these value :
 - MWL
 - ISNA
 - Egypt
