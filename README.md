@@ -17,8 +17,25 @@ You can install the dependency using Dep by running the following command in the
 $ dep ensure
 ````
 
-### Create .env file
-Go Prayer Reminder stores the configuration in .env file. You can create .env file by copying and renaming .env.example file and fill all the configuration key
+### Create configuration file
+Go Prayer Reminder stores the configuration in `config.env` file. You can create `config.env` file by copying and renaming `config.env.example` file and fill all the configuration key.
+Here is an example of configuration for my hometown :
+````
+CITY_NAME="Ponorogo"
+CITY_LAT="-8.00"
+CITY_LONG="111.30"
+CITY_TIMEZONE="7"
+AZAN_FILENAME="path-to-mp3-file"
+METHOD="MWL"
+````
+The METHOD setting, can be filled with one of this value :
+- MWL
+- ISNA
+- Egypt
+- Makkah
+- Karachi
+- Tehran
+- Jafari
 
 ### Run / Build
 You could run the program by running the following command in the project directory :

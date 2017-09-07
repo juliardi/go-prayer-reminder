@@ -14,20 +14,23 @@ import (
 	praytimes "github.com/juliardi/PrayTimes-Golang"
 )
 
-var cityName string
-var cityLat float64
-var cityLong float64
-var cityTimezone int
-var azanFile string
+type Configuration struct {
+	cityName     string
+	cityLat      float64
+	cityLong     float64
+	cityTimezone int
+	azanFile     string
+	method       string
+}
 
 func main() {
-	loadConfig()
+	config := loadConfig()
 	currentDate := getCurrentDateAsString()
-	ptMap := prayTime(cityLat, cityLong, cityTimezone)
+	ptMap := getPrayTimes(config)
 
-	fmt.Println("Prayer time schedule for", cityName, "on", currentDate)
-	printPrayTime(ptMap)
-	ticker := timeTicker(ptMap, azanFile)
+	fmt.Println("Prayer time schedule for", config.cityName, "on", currentDate)
+	printPrayTimes(ptMap)
+	ticker := timeTicker(ptMap, config.azanFile)
 	mainloop(ticker)
 }
 
@@ -46,32 +49,41 @@ func mainloop(ticker time.Ticker) {
 // Function loadConfig is used to load program configuration
 // in .env file
 // NOTE : You must always put your .env file in the same directory as the program
-func loadConfig() {
-	err := godotenv.Load()
+func loadConfig() Configuration {
+	err := godotenv.Load("config.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
-	cityName = os.Getenv("CITY_NAME")
-	cityLat, err = strconv.ParseFloat(os.Getenv("CITY_LAT"), 64)
+	config := Configuration{}
+
+	config.cityName = os.Getenv("CITY_NAME")
+	config.cityLat, err = strconv.ParseFloat(os.Getenv("CITY_LAT"), 64)
 	if err != nil {
 		log.Fatal("CITY_LAT configuration is missing")
 	}
 
-	cityLong, err = strconv.ParseFloat(os.Getenv("CITY_LONG"), 64)
+	config.cityLong, err = strconv.ParseFloat(os.Getenv("CITY_LONG"), 64)
 	if err != nil {
 		log.Fatal("CITY_LONG configuration is missing")
 	}
 
-	cityTimezone, err = strconv.Atoi(os.Getenv("CITY_TIMEZONE"))
+	config.cityTimezone, err = strconv.Atoi(os.Getenv("CITY_TIMEZONE"))
 	if err != nil {
 		log.Fatal("CITY_TIMEZONE configuration is missing")
 	}
 
-	azanFile = os.Getenv("AZAN_FILENAME")
-	if azanFile == "" {
+	config.azanFile = os.Getenv("AZAN_FILENAME")
+	if config.azanFile == "" {
 		log.Fatal("AZAN_FILENAME configuration is missing")
 	}
+
+	config.method = os.Getenv("METHOD")
+	if config.azanFile == "" {
+		log.Fatal("METHOD configuration is missing")
+	}
+
+	return config
 }
 
 // This is used to get the current date as string
@@ -117,14 +129,19 @@ func playAzan(azanFile string) {
 
 // Function prayTime retrieves prayer time schedule from
 // PrayTimes(https://github.com/3ace/PrayTimes-Golang) library
-func prayTime(latitude float64, longitude float64, timezone int) map[string]string {
-	pt := praytimes.GetTimes(time.Now(), []float64{latitude, longitude}, timezone)
+func getPrayTimes(config Configuration) map[string]string {
+	praytimes.SetMethod(config.method)
+	coordinate := []float64{
+		config.cityLat,
+		config.cityLong,
+	}
+	pt := praytimes.GetTimes(time.Now(), coordinate, config.cityTimezone)
 
 	return pt
 }
 
 // This function prints out prayer time schedule
-func printPrayTime(ptMap map[string]string) {
+func printPrayTimes(ptMap map[string]string) {
 	fmt.Println("midnight =", ptMap["midnight"])
 	fmt.Println("imsak =", ptMap["imsak"])
 	fmt.Println("fajr =", ptMap["fajr"])
