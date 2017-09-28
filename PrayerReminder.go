@@ -12,9 +12,10 @@ import (
 
 	godotenv "github.com/joho/godotenv"
 	praytimes "github.com/juliardi/PrayTimes-Golang"
+	dialog "github.com/juliardi/dialog"
 )
 
-type Configuration struct {
+type configuration struct {
 	cityName     string
 	cityLat      float64
 	cityLong     float64
@@ -24,7 +25,9 @@ type Configuration struct {
 }
 
 func main() {
+	dialog.Message("%s", "Welcome to Prayer Reminder").Title("Sholat").OkDialog()
 	config := loadConfig()
+
 	currentDate := getCurrentDateAsString()
 	ptMap := getPrayTimes(config)
 
@@ -49,13 +52,13 @@ func mainloop(ticker time.Ticker) {
 // Function loadConfig is used to load program configuration
 // in .env file
 // NOTE : You must always put your .env file in the same directory as the program
-func loadConfig() Configuration {
+func loadConfig() configuration {
 	err := godotenv.Load("config.env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
-	config := Configuration{}
+	config := configuration{}
 
 	config.cityName = os.Getenv("CITY_NAME")
 	config.cityLat, err = strconv.ParseFloat(os.Getenv("CITY_LAT"), 64)
@@ -106,8 +109,10 @@ func timeTicker(ptMap map[string]string, azanFile string) time.Ticker {
 
 			for strSholat := range ptMap {
 				if strTime == ptMap[strSholat] {
-					fmt.Println("Now is the time for", strSholat, "prayer")
+					message := fmt.Sprintf("Now is the time for %s prayer", strSholat)
+					fmt.Println(message)
 					playAzan(azanFile)
+					dialog.Message("%s", message).Title("Sholat").OkDialog()
 					time.Sleep(time.Minute * 2)
 				}
 			}
@@ -129,7 +134,7 @@ func playAzan(azanFile string) {
 
 // Function prayTime retrieves prayer time schedule from
 // PrayTimes(https://github.com/3ace/PrayTimes-Golang) library
-func getPrayTimes(config Configuration) map[string]string {
+func getPrayTimes(config configuration) map[string]string {
 	praytimes.SetMethod(config.method)
 	coordinate := []float64{
 		config.cityLat,

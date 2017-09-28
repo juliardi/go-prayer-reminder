@@ -2,10 +2,16 @@
 
 
 [[projects]]
+  branch = "master"
+  name = "github.com/AllenDang/w32"
+  packages = ["."]
+  revision = "9a4ee0f7d224efbff75947fa7060daadccc4741c"
+
+[[projects]]
   name = "github.com/joho/godotenv"
   packages = ["."]
-  revision = "726cc8b906e3d31c70a9671c90a13716a8d3f50d"
-  version = "v1.1"
+  revision = "a79fa1e548e2c689c241d10173efd51e5d689d5b"
+  version = "v1.2.0"
 
 [[projects]]
   branch = "master"
@@ -13,9 +19,33 @@
   packages = ["."]
   revision = "99cd9becafc32aed615264f06a501308a7be4b34"
 
+[[projects]]
+  branch = "master"
+  name = "github.com/juliardi/dialog"
+  packages = ["."]
+  revision = "2dab2676e9e7e41f2b30309fd3f321da8d4480b7"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mattn/go-gtk"
+  packages = ["gdk","gdkpixbuf","glib","gtk","pango"]
+  revision = "f546757330f0b7d13aabef1a8a095c727f6cb571"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/mattn/go-pointer"
+  packages = ["."]
+  revision = "6f8ea376a37a9c9ae33f1898cfc00877f79abfa1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/sqweek/dialog"
+  packages = ["cocoa"]
+  revision = "332999d561f99a8e2b67eddf5d4762dba31c108a"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7db09d9d17451d183771393827bdc2a09d3a4a6ff03ac5a8c0066fa1f6f8ca5d"
+  inputs-digest = "96beeed913f336b724e5c686fa02df8c4416839251f80a6235e2c025ae06425f"
   solver-name = "gps-cdcl"
   solver-version = 1
