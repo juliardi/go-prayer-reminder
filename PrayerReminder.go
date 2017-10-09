@@ -111,7 +111,7 @@ func timeTicker(ptMap map[string]string, azanFile string) time.Ticker {
 				if strTime == ptMap[strSholat] {
 					message := fmt.Sprintf("Now is the time for %s prayer", strSholat)
 					fmt.Println(message)
-					playAzan(azanFile)
+					go playAzan(azanFile)
 					dialog.Message("%s", message).Title("Sholat").OkDialog()
 					time.Sleep(time.Minute * 2)
 				}
