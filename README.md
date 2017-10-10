@@ -5,6 +5,7 @@ Islamic Prayer Time Reminder written in Golang
 To develop and build Go Prayer Reminder, you need to install the following tools :
 - Go 1.8
 - [Dep : Golang Dependency Management Tool](https://github.com/golang/dep)
+- [UPX](https://upx.github.io/)
 - [mpg123](https://sourceforge.net/projects/mpg123/)
 - Azan Mp3 File
 
