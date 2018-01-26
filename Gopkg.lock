@@ -8,6 +8,60 @@
   revision = "9a4ee0f7d224efbff75947fa7060daadccc4741c"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/getlantern/context"
+  packages = ["."]
+  revision = "624d99b1798d7c5375ea1d3ca4c5b04d58f7c775"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/getlantern/errors"
+  packages = ["."]
+  revision = "e9c0296368b736086adb20832549567064224854"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/getlantern/filepersist"
+  packages = ["."]
+  revision = "c5f0cd24e7991579ba6f5f1bd20a1ad2c9f06cd4"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/getlantern/golog"
+  packages = ["."]
+  revision = "cca714f7feb5df8e455f409b549d384441ac4578"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/getlantern/hex"
+  packages = ["."]
+  revision = "083fba3033ad473db3dd31c9bb368473d37581a7"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/getlantern/hidden"
+  packages = ["."]
+  revision = "d52a649ab33af200943bb599898dbdcfdbc94cb7"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/getlantern/ops"
+  packages = ["."]
+  revision = "37353306c90844c8e0591956f56611f46299d202"
+
+[[projects]]
+  name = "github.com/getlantern/stack"
+  packages = ["."]
+  revision = "ac4c579c437a23e1a15814c867ccb82122fb383b"
+  version = "v1.5.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/getlantern/systray"
+  packages = ["."]
+  revision = "fe4b1c6bb216a485a73414ce55047ec7ce3a9766"
+
+[[projects]]
   name = "github.com/joho/godotenv"
   packages = ["."]
   revision = "a79fa1e548e2c689c241d10173efd51e5d689d5b"
@@ -39,6 +93,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/oxtoacart/bpool"
+  packages = ["."]
+  revision = "4e1c5567d7c2dd59fa4c7c83d34c2f3528b025d6"
+
+[[projects]]
+  branch = "master"
   name = "github.com/sqweek/dialog"
   packages = ["cocoa"]
   revision = "332999d561f99a8e2b67eddf5d4762dba31c108a"
@@ -46,6 +106,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "96beeed913f336b724e5c686fa02df8c4416839251f80a6235e2c025ae06425f"
+  inputs-digest = "1b6322ad3e754714171576bced2acda8fb5f5d5ab63b55fb0a6159910d0e15af"
   solver-name = "gps-cdcl"
   solver-version = 1
