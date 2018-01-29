@@ -1,0 +1,26 @@
+# This is a localization settings for prayer names
+# You can add your language by copying the below configuration,
+# then set your language id as a group name (in this case `id_ID` is a code for
+# Bahasa Indonesia which is used by Republic of Indonesia).
+# You may set the group name as you see fit
+# (For example, `en_US` if it is American English or simply `english`)
+# To activate your language settings, simply set the `locale` key
+# in `main.toml` file to your group name
+
+[id_ID]
+imsak = "Imsak"
+fajr = "Subuh"
+sunrise = "Terbit"
+dhuhr = "Dhuhur"
+asr = "Asar"
+maghrib = "Maghrib"
+isha = "Isya"
+
+[en_US]
+imsak = "Imsak"
+fajr = "Fajr"
+sunrise = "Sunrise"
+dhuhr = "Dhuhr"
+asr = "Asr"
+maghrib = "Maghrib"
+isha = "Isha"

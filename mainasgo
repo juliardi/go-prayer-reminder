@@ -24,18 +24,18 @@ type configuration struct {
 	method       string
 }
 
-func main() {
-	dialog.Message("%s", "Welcome to Prayer Reminder").Title("Sholat").OkDialog()
-	config := loadConfig()
-
-	currentDate := getCurrentDateAsString()
-	ptMap := getPrayTimes(config)
-
-	fmt.Println("Prayer time schedule for", config.cityName, "on", currentDate)
-	printPrayTimes(ptMap)
-	ticker := timeTicker(ptMap, config.azanFile)
-	mainloop(ticker)
-}
+// func main() {
+// 	dialog.Message("%s", "Welcome to Prayer Reminder").Title("Sholat").OkDialog()
+// 	config := loadConfig()
+//
+// 	currentDate := getCurrentDateAsString()
+// 	ptMap := getPrayTimes(config)
+//
+// 	fmt.Println("Prayer time schedule for", config.cityName, "on", currentDate)
+// 	printPrayTimes(ptMap)
+// 	ticker := timeTicker(ptMap, config.azanFile)
+// 	mainloop(ticker)
+// }
 
 // Function mainloop is used to block the program execution
 // and provide a pretty way of program to quit

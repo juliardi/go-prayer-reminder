@@ -1,0 +1,11 @@
+
+[application]
+  azan_filename = "assets/audio/Azan.mp3"
+  calculation_method = "MWL"
+  locale = "id_ID"
+
+[city]
+  latitude = "-8.00"
+  longitude = "111.30"
+  name = "Ponorogo"
+  timezone = "7"

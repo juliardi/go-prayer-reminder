@@ -98,6 +98,12 @@
   revision = "4e1c5567d7c2dd59fa4c7c83d34c2f3528b025d6"
 
 [[projects]]
+  name = "github.com/pelletier/go-toml"
+  packages = ["."]
+  revision = "acdc4509485b587f5e675510c4f2c63e90ff68a8"
+  version = "v1.1.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/sqweek/dialog"
   packages = ["cocoa"]
@@ -106,6 +112,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "1b6322ad3e754714171576bced2acda8fb5f5d5ab63b55fb0a6159910d0e15af"
+  inputs-digest = "ea0df704b4e2f9939c6243f04edb7a8fe29d09f740153782e03a4b12185b1bab"
   solver-name = "gps-cdcl"
   solver-version = 1
