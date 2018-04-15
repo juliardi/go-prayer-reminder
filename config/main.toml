@@ -1,11 +1,11 @@
 
 [application]
-  azan_filename = "assets/audio/Azan.mp3"
+  azan_filename = "assets/audio/azan.mp3"
   calculation_method = "MWL"
   locale = "id_ID"
 
 [city]
-  latitude = "-8.00"
-  longitude = "111.30"
-  name = "Ponorogo"
+  latitude = "-7.42"
+  longitude = "110.48"
+  name = "Surakarta"
   timezone = "7"
